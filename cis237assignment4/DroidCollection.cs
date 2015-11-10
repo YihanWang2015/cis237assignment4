@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+Author: Yihan Wang
+Date:   11-10-2015
+Description:    Custom droid Collection class
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -101,7 +107,6 @@ namespace cis237assignment4
         {
             //Declare the return string
             string returnString = "";
-
             //For each droid in the droidCollection
             foreach (IDroid droid in droidCollection)
             {
@@ -118,11 +123,96 @@ namespace cis237assignment4
                     returnString += "Total Cost: " + droid.TotalCost.ToString("C") + Environment.NewLine;
                     returnString += "******************************" + Environment.NewLine;
                     returnString += Environment.NewLine;
+
                 }
             }
 
             //return the completed string
             return returnString;
         }
-    }
+    
+		public void SortByType()
+		{
+
+            //Bucket Sort
+            /*
+            A arry to be sorted
+            n is length of A
+            for i = 1 to n
+            insert A[i] into B bucket (queue)
+            for i = 0 to n-1
+            sort B
+            */
+
+            //Generic Stack for each droid type
+            Stack<Droid> protocolStack = new Stack<Droid>();
+            Stack<Droid> utilityStack = new Stack<Droid>();
+            Stack<Droid> janitorStack = new Stack<Droid>();
+            Stack<Droid> astromechStack = new Stack<Droid>();
+
+            //Create a Queue for Droids
+            Queue<Droid> droidQueue = new Queue<Droid>();
+            //Create a linked list for the droids
+            LinkedList<Droid> droidLinkedList = new LinkedList<Droid>();
+
+            int n = droidCollection.Length;
+
+            //Move droid type into the bucket
+            foreach (int i in droidCollection)
+            {
+                //check if value is not null
+                if(droidCollection[i] != null)
+                {
+                    //Add a droid to the linked list
+                    droidLinkedList.AddLast(droidCollection);
+                }
+                //Add a new node for the data in the linked list
+                GenericNode<Droid> node = new GenericNode<Droid>();
+                node.Next;
+                droidQueue.enqueue(droidLinkedList);
+
+            }
+
+            //Push the droids into the queue(enqueue) and sort by pushing into their respected stacks
+
+            foreach (int i in droidQueue)
+            {
+                switch (droidQueue.Equals)
+                {
+                    case "Protocol":
+                        //take out of queue
+                        //Add to the respected stack
+                        protocolStack.push(droidQueue.dequeue());
+                        break;
+                    case "Utility":
+                        utilityStack.push(droidQueue.dequeue());
+                        break;
+                    case "Janitor":
+                        droidQueue.dequeue();
+                        janitorStack.push(droidQueue.dequeue());
+                        break;
+                    case "Astromech":
+                        droidQueue.dequeue();
+                        astromechStack.push(droidQueue.dequeue());
+                        break;
+                }
+            }
+            }
+
+
+
+
+
+        }
+
+
+
+        public void SortByCost()
+		{
+            //begin to do a mergesort on the totalCost by creating a mergesort object
+            MergeSort mergeSort = new MergeSort(droidCollection);
+		}
+
+	}
+
 }

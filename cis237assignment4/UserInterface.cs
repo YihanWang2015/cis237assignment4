@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+Author: Yihan Wang
+Date:   11-10-2015
+Description:    Class that implements the User Interface
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +22,25 @@ namespace cis237assignment4
         public UserInterface(IDroidCollection DroidCollection)
         {
             this.droidCollection = DroidCollection;
+
+			//Hardcode some droids to the list
+			this.droidCollection.Add("Carbonite","Protocol","Bronze",5);
+			this.droidCollection.Add("Vanadium","Protocol","Silver",100);
+			this.droidCollection.Add("Quadranium","Protocol","Gold",20);
+
+			this.droidCollection.Add ("Vanadium", "Utility", "Gold", true, true, true);
+			this.droidCollection.Add ("Carbonite", "Utility", "Bronze", true, true, true);
+			this.droidCollection.Add ("Quadranium", "Utility", "Silver", true, true, true);
+
+			this.droidCollection.Add ("Carbonite","Janitor","Bronze",true,true,true,true,true);
+			this.droidCollection.Add ("Vanadium","Janitor","Bronze",true,true,false,true,false);
+			this.droidCollection.Add ("Quadranium","Janitor","Gold",false,true,false,true,true);
+
+			this.droidCollection.Add ("Carbonite","Astromech","Silver",true,true,true,true,10);
+			this.droidCollection.Add ("Vanadium","Astromech","Silver",false,true,false,true,5);
+			this.droidCollection.Add ("Quadranium","Janitor","Gold",false,true,true,false,2);
+
+
         }
 
         //Method to display the welcome message of the program
@@ -31,7 +56,9 @@ namespace cis237assignment4
             Console.WriteLine("What would you like to do?");
             Console.WriteLine("1. Add a new droid to the system");
             Console.WriteLine("2. Print the list of droids out");
-            Console.WriteLine("3. Exit the program");
+			Console.WriteLine ("3. Sort droid list by total cost");
+			Console.WriteLine ("4. Sort droid list by type");
+            Console.WriteLine("5. Exit the program");
         }
 
         //Method to get a menu choice
@@ -64,7 +91,7 @@ namespace cis237assignment4
             int choice = this.GetMenuChoice();
 
             //If the choice is not valid, loop until it is valid, or the user cancels the operation
-            while(choice < 1 || choice > 4)
+            while(choice < 1 || choice > 3)
             {
                 //Prompt for a valid choice
                 this.displayColorSelection();
@@ -95,6 +122,18 @@ namespace cis237assignment4
             Console.WriteLine();
             Console.WriteLine(this.droidCollection.GetPrintString());
         }
+
+		public void SortType()
+		{
+			Console.WriteLine ("Soft by type");
+			this.droidCollection.SortByType();
+		}
+
+		public void SortByTotalCost()
+		{
+			Console.WriteLine ("Sort by Total");
+			this.droidCollection.SortByCost ();
+		}
 
         //Display the Model Selection
         private void displayModelSelection()
@@ -216,7 +255,7 @@ namespace cis237assignment4
             int choice = this.GetMenuChoice();
 
             //while the chioce is not valid, wait until there is a valid one
-            while (choice < 0 || choice > 4)
+            while (choice < 0 || choice > 6)
             {
                 this.displayMaterialSelection();
                 choice = this.GetMenuChoice();

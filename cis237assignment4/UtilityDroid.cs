@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+Author: Yihan Wang
+Date:   11-10-2015
+Description:    Utitily Droid Class
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

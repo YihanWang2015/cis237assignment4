@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+Author: Yihan Wang
+Date:   11-10-2015
+Description:    Main class, displays a UI, and creates a custom droid list
+*/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,7 +31,7 @@ namespace cis237assignment4
             int choice = userInterface.GetMenuChoice();
 
             //While the choice is not equal to 3, continue to do work with the program
-            while (choice != 3)
+            while (choice != 5)
             {
                 //Test which choice was made
                 switch (choice)
@@ -40,6 +45,16 @@ namespace cis237assignment4
                     case 2:
                         userInterface.PrintDroidList();
                         break;
+
+					//Choose to sort list by total Cost
+					case 3:
+						userInterface.SortByTotalCost();
+						break;
+
+					//Choose to sort list by type
+					case 4:
+						userInterface.SortType ();
+						break;
                 }
                 //Re-display the menu, and re-prompt for the choice
                 userInterface.DisplayMainMenu();

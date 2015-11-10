@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+Author: Yihan Wang
+Date:   11-10-2015
+Description:    Class that implements Interface IDroid
+*/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace cis237assignment4
 {
-    interface IDroid
+    interface IDroid:IComparable
     {
         //Method to calculate the total cost of a droid
         void CalculateTotalCost();
